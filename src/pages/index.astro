@@ -1,0 +1,33 @@
+---
+// import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import Line from '../components/graphic/line.vue';
+import LineChart from '../components/graphic/lineChart.vue';
+import Bar from '../components/graphic/bar.vue';
+import Donus from '../components/graphic/donus.vue';
+import Treemap from '../components/graphic/treemap.vue';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<!-- <Welcome /> -->
+	<div class="grid grid-cols-3 gap-6">
+		<div>
+			<Line client:only  />
+		</div>
+		<div>
+			<LineChart client:only />
+		</div>
+		<div>
+			<Bar client:only  />
+		</div>
+		<div>
+			<Donus client:only />
+		</div>
+		<div>
+			<Treemap client:only />	
+		</div>
+	</div>	
+</Layout>
