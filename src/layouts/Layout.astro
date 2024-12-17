@@ -1,3 +1,10 @@
+---
+// import Content from '../components/content.astro'
+import MenuAside from '../components/menuAside.astro'
+import MenuBar from "../components/menuBar.astro"
+import Body from "../components/body.astro"
+import Footer from "../components/footer.astro"
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -8,10 +15,20 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
+		<div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+			<MenuAside />
+			<main class="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in">
+				<MenuBar />
+				<Body>
+					<slot />
+				</Body>
+				<Footer />
+			</main>
+			
+		</div>
 	</body>
 </html>
-
+<!-- <Content> -->
 <style>
 	html,
 	body {
