@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://stargazers.club/sitemap-index.xml

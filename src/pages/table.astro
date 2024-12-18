@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TableSimple from '../components/table/tableSimple.vue';
+---
+
+<Layout title="Table">
+	<div class="grid grid-cols-12 gap-4 md:gap-6 2xl:gap-7.5">
+		<div class="col-span-12 rounded-sm px-5 p-7.5 pb-5 sm:px-7.5 xl:col-span-12">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<TableSimple client:only />
+				</div>
+			</div>
+		</div>	
+	</div>
+</Layout>

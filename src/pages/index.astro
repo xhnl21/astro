@@ -11,23 +11,45 @@ import Treemap from '../components/graphic/treemap.vue';
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
+<Layout title="Dashborad" >
 	<!-- <Welcome /> -->
-	<div class="grid grid-cols-2 gap-6">
-		<div>
-			<Line client:only  />
+	<div class="grid grid-cols-12 gap-4 md:gap-6 2xl:gap-7.5">
+		<div class="col-span-12 rounded-sm px-5 pt-7.5 pb-5 sm:px-7.5 xl:col-span-6">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<LineChart client:only />
+				</div>
+			</div>
 		</div>
-		<div>
-			<LineChart client:only />
+		<div class="col-span-12 rounded-sm px-5 p-7.5 pb-5 sm:px-7.5 xl:col-span-6">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<Bar client:only />
+				</div>
+			</div>
 		</div>
-		<div>
-			<Bar client:only  />
+		<div class="col-span-12 rounded-sm px-5 pt-7.5 pb-5 sm:px-7.5 xl:col-span-6">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<Donus client:only />
+				</div>
+			</div>
 		</div>
-		<div>
-			<Donus client:only />
-		</div>
-		<div>
-			<Treemap client:only />	
-		</div>
-	</div>	
+		<div class="col-span-12 rounded-sm px-5 p-7.5 pb-5 sm:px-7.5 xl:col-span-6">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<Line client:only />
+				</div>
+			</div>
+		</div>						
+	</div>
+	<div class="grid grid-cols-12 gap-4 md:gap-6 2xl:gap-7.5">
+		<div class="col-span-12 rounded-sm px-5 p-7.5 pb-5 sm:px-7.5 xl:col-span-12">
+			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+				<div class="-ml-5">
+					<Treemap client:only />
+				</div>
+			</div>
+		</div>	
+	</div>
 </Layout>

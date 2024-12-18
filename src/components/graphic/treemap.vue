@@ -1,6 +1,6 @@
 <template>
 	<div>
-	  <apexchart width="500" type="treemap" :options="options" :series="series"></apexchart>
+	  <apexchart type="treemap" :options="options" :series="series"></apexchart>
 	</div>
   </template>
   
