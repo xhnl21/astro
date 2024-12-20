@@ -97,7 +97,7 @@ export default {
         let nativeUrl = window.location.pathname;
         let url = nativeUrl.split('/').slice(0, 2).join('/');
         let rsUrl = url.split('/');
-        console.log(rsUrl[1]);
+        // console.log(rsUrl[1]);
 
         if (rsUrl[1] === '') {
           this.pathname = '/';

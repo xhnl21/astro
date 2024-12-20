@@ -6,9 +6,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "astrobdpush": "npx astro db push verify db/config.ts",
+    "astrotable": "npx astro db execute db/config.ts",
+    "astrobd": "npx astro db execute db/seed.ts",
+    "astrostudio": "astro login"
   },
   "dependencies": {
+    "@astrojs/db": "^0.14.4",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.3",
     "@astrojs/vue": "^5.0.2",
