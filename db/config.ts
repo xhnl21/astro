@@ -28,7 +28,18 @@ const Item = defineTable({
   },
 });
 
+const Product = defineTable({
+  columns: {
+    id: column.number(),
+    prduct: column.text(),
+    category: column.text(),
+    brand: column.text(),
+    description: column.text(),
+    price: column.number(),
+  }
+});
+
 // https://astro.build/db/config
 export default defineDb({
-  tables: {Author, Comment, Item}
+  tables: {Author, Comment, Item, Product }
 });

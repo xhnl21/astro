@@ -125,7 +125,7 @@ const comentarios = await db.select().from(Item);
 				return;
 			}
 			formData.append("value", value.toString());
-			const response = await fetch("/items", {
+			const response = await fetch("api/items", {
 				method: "POST",
 				body: formData,
 			});
@@ -149,7 +149,7 @@ const comentarios = await db.select().from(Item);
 		});
 	});
 	function del(id: number) {
-		fetch('/items?id=' + id, {
+		fetch('api/items?id=' + id, {
 			method: "DELETE",
 		}).then((data) => {
 			console.log(data.status);
