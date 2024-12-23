@@ -4,14 +4,14 @@
 		<div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 			<div class="w-full md:w-1/2">
 				<div class="flex items-center">
-					<label for="simple-search" class="sr-only">Search</label>
+					<label class="sr-only" for="searchInputs" >Search</label>
 					<div class="relative w-full">
 						<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 							<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
 							</svg>
 						</div>
-						<input type="text" v-model="searchInputs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
+						<input type="text" id="searchInputs" v-model="searchInputs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
 					</div>
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 				</button>
 			</div>
 		</div>
-		<div class="overflow-x-auto">
+		<div class="overflow-x-auto px-4">
 			<table class="w-full text-sm text-left">
 				<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 					<tr>
@@ -48,12 +48,12 @@
 									<path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
 								</svg>
 							</button>
-							<div v-if="activeDropdown === item.id" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+							<div v-if="activeDropdown === item.id" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600" style="position: absolute;margin-top: 118px;">
 								<ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
 									<li><a href="#" @click="toggleModal(false, i)" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a></li>
 									<li><a href="#" @click="delModel(item.id)" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a></li>
 								</ul>
-							</div>							
+							</div>
 						</td>
 					</tr>
 				</tbody>
@@ -90,25 +90,25 @@
 				<div class="p-6 space-y-6">
 					<div class="grid gap-6 mb-6 md:grid-cols-2">
 						<div>
-							<label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
-							<input type="text" v-model="form.product" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+							<label for="product" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
+							<input type="text" id="product" v-model="form.product" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
 						</div>
 						<div>
-							<label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-							<input type="text" v-model="form.category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+							<label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+							<input type="text" id="category" v-model="form.category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
 						</div>
 						<div>
-							<label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-							<input type="text" v-model="form.brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+							<label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+							<input type="text" id="brand" v-model="form.brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
 						</div>  
 						<div>
-							<label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-							<input type="text" v-model="form.description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+							<label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+							<input type="text" id="description" v-model="form.description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
 						</div>
 					</div>
 					<div class="mb-6">
-						<label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-						<input type="text" v-model="form.price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+						<input type="text" id="price" v-model="form.price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
 					</div> 
 				</div>
 				<!-- Modal footer -->
@@ -165,7 +165,7 @@
 		</div>
 	</div>	
 </template>
-<script>
+<script lang="ts">
 import { Modal } from 'flowbite';
 import * as Yup from "yup";
 export default {
@@ -173,7 +173,7 @@ export default {
   data() {
     return {		
 		searchInputs: '',
-		datos: [],
+		datos: [] as Array<{ id: number; product: string; category: string; brand: string; description: string; price: number }>,
 		titleModel:'Add Product',
 		form:{
 			product:'',
@@ -182,10 +182,10 @@ export default {
 			description:'',
 			price:0,
 		},
-		modalInstance: null,
-		modalInstanceA: null,
-		modalInstanceB: null,
-		activeDropdown: null,
+		modalInstance: null as any,
+		modalInstanceA: null as any,
+		modalInstanceB: null as any,
+		activeDropdown: null as any,
 		btnEdit:true,
 		index: 0,
 		msjLoad:'',
@@ -210,7 +210,7 @@ export default {
         description: 301,
         price: 3000,
       },	  
-    ];
+    ] as any;
   },
   mounted() {
 	this.initModal();
@@ -218,19 +218,19 @@ export default {
   methods:{
     initModal() {
       const modalElement = document.querySelector('#defaultModal');
-      this.modalInstance = new Modal(modalElement);
+	  this.modalInstance = new Modal(modalElement as HTMLElement);
 
       const modalElementA = document.querySelector('#defaultModalA');
-      this.modalInstanceA = new Modal(modalElementA);
+      this.modalInstanceA = new Modal(modalElementA as HTMLElement);
 	  
       const modalElementB = document.querySelector('#defaultModalB');
-      this.modalInstanceB = new Modal(modalElementB);	  
+      this.modalInstanceB = new Modal(modalElementB as HTMLElement);	  
     },
-    toggleModal(bool, dat) {
+    toggleModal(bool: any, dat: any) {
 		if (!bool) {
 			this.titleModel = 'Edit Product';
 			this.index = dat;
-			this.toggleDropdown(parseInt(this.datos[dat].id));
+			this.toggleDropdown(this.datos[dat].id.toString());
 			// this.form.id = this.datos[dat].id;
 			// this.form.product = this.datos[dat].product;
 			// this.form.category = this.datos[dat].category;
@@ -264,9 +264,9 @@ export default {
 			this.datos.push({ id: Date.now(), ...this.form });
 			this.showTemporaryModal("Los datos se guardaron correctamente.");
 			this.closeModal();			
-		} catch (error) {
-			let array = [];
-			error.inner.forEach((err) => {
+		} catch (error:any) {
+			let array: any[] = [];
+			error.inner.forEach((err: any) => {
 				console.log(err.message);
 				array.push(err.message);
 			});
@@ -289,26 +289,26 @@ export default {
 			// this.datos[this.index].brand = this.form.brand;
 			// this.datos[this.index].description = this.form.description;
 			// this.datos[this.index].price = this.form.price;
-			this.datos[this.index] = { ...this.form }; // Update the existing product
+			this.datos[this.index] = { id: this.datos[this.index].id, ...this.form }; // Update the existing product
 			this.showTemporaryModal("Los datos se editaron correctamente.");
 			this.closeModal();
-		} catch (error) {
-			let array = [];
-			error.inner.forEach((err) => {
+		} catch (error: any) {
+			let array: any[] = [];
+			error.inner.forEach((err: any) => {
 				console.log(err.message);
 				array.push(err.message);
 			});
 			this.showTemporaryModal(array[0]);
 		}						
     },	
-    showTemporaryModal(msj) {
+    showTemporaryModal(msj: any) {
 		this.msjLoad = msj;
 		this.modalInstanceA.toggle();
 		setTimeout(() => {
 			this.modalInstanceA.hide();
 		}, 3000);
     },
-	delModel(id){
+	delModel(id: any){
 		this.modalInstanceB.toggle();
 		this.id = id;
 	},
@@ -317,7 +317,7 @@ export default {
 		this.id = 0;
 	},	
 	del(){
-		this.datos = this.datos.filter((item) => item.id !== this.id);
+		this.datos = this.datos.filter((item:any) => item.id !== this.id);
 		this.delCloseModel();
 	},
     resetForm() {
@@ -330,8 +330,8 @@ export default {
       };
 	  this.btnEdit = true;
     },
-    toggleDropdown(id) {
-      	this.activeDropdown = this.activeDropdown === id ? null : id;	  
+    toggleDropdown(id:any) {
+      	this.activeDropdown = parseInt(this.activeDropdown) === parseInt(id) ? null : parseInt(id);	  
     },	
   },
   computed: {		

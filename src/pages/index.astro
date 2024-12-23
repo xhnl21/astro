@@ -9,17 +9,14 @@ import Treemap from '../components/graphic/treemap.vue';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-import { db, Item } from "astro:db";
-const comentarios = await db.select().from(Item);
 ---
 <Layout title="Dashborad" >
 	<!-- <Welcome /> -->
 	<div class="grid grid-cols-12 gap-4 md:gap-6 2xl:gap-7.5">
 		<div class="col-span-12 rounded-sm px-5 p-7.5 pb-5 sm:px-7.5 xl:col-span-12">
 			<div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-				<div class="-ml-5">
-					<main class="px-4">
+				<div class="-ml-5 px-5">
+					<main class="p-4">
 						<form id="test-form" class="space-y-6">
 							<div>
 								<label for="value" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
@@ -42,30 +39,19 @@ const comentarios = await db.select().from(Item);
 								Submit
 							</button>
 						</form>
-					  </main>
-					  <div class="w-full">
-						<table>
-							<thead>
+					</main>
+					<div class="overflow-x-auto">
+						<table class="w-full text-sm text-left">
+							<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 								<tr>
 									<th>ID</th>
 									<th>Valor</th>
 									<th>Action</th>
 								</tr>
 							</thead>
-							{comentarios.length === 0 ? <tr><td colspan="3">No hay comentarios</td></tr> : null}
-							{
-								comentarios.map(({ id, value }) => (
-									<tr>
-										<td>{id}</td>
-										<td>{value}</td>
-										<td>
-											<button class="delete-button text-red-600 hover:underline" data-id={id}>Delete</button>
-										</td>
-									</tr>
-								))
-							}
+							<tbody id="table"></tbody>
 						</table>
-					  </div>
+					</div>
 				</div>
 			</div>
 		</div>	
@@ -138,16 +124,6 @@ const comentarios = await db.select().from(Item);
 			}
     	});
 	}
-	document.querySelectorAll('.delete-button').forEach(button => {
-		button.addEventListener('click', function(this: HTMLButtonElement) {
-			const id = this.dataset.id; // Obtén el ID del botón
-			if (id) {
-				del(Number(id)); // Llama a la función del con el ID
-			} else {
-				console.error("ID not found");
-			}
-		});
-	});
 	function del(id: number) {
 		fetch('api/items?id=' + id, {
 			method: "DELETE",
@@ -156,4 +132,46 @@ const comentarios = await db.select().from(Item);
 			location.reload();
 		});
 	}
+	async function get() {
+		try {
+			const response = await fetch('api/items', { // Asegúrate de que la ruta sea correcta
+				method: "GET",
+			});
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const comentarios: { data: { id: number, value: string }[] } = await response.json(); // Convierte la respuesta a JSON
+			// console.log(comentarios.data);
+			const table = document.getElementById('table');
+			let innerHTML = '';
+			if (comentarios.data.length === 0) {
+				innerHTML += `<tr><td colspan="3">No hay comentarios</td></tr>`;				
+				if (table) {
+					table.innerHTML = innerHTML;
+				}
+			}
+			if (table) {
+				comentarios.data.forEach(({ id, value }) => {
+					innerHTML += `<tr>
+						<td>${id}</td>
+						<td>${value}</td>
+						<td>
+							<button class="delete-button text-red-600 hover:underline" data-id="${id}">Delete</button>
+						</td>
+					</tr>`;
+				});
+				table.innerHTML = innerHTML;
+
+				table.querySelectorAll('.delete-button').forEach((button) => {
+					button.addEventListener('click', () => {
+						const id = (button as HTMLButtonElement).dataset.id;
+						if (id) del(Number(id));
+					});
+				});
+			}
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}	
+	get()	
 </script>
